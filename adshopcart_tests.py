@@ -7,4 +7,9 @@ class AdShopAppPositiveTestCases(unittest.TestCase):
     @staticmethod
     def new_test():
         methods.setUp()
+        methods.register()
+        methods.log_out()
+        methods.log_in()
+        methods.delete_user()
         methods.tearDown()
+
