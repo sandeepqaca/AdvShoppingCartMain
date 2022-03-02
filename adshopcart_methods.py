@@ -54,6 +54,18 @@ def register():
                 sleep(3)
             else:
                 print(f'User is not created. Check your code')
+            driver.find_element(By.ID, "menuUser").click()
+            sleep(1)
+            driver.find_element(By.XPATH, '//a/div/label[contains(.,"My account")]').click()
+            sleep(0.25)
+            print(f'{locators.full_name}')
+            sleep(5)
+            driver.find_element(By.ID, "menuUser").click()
+            sleep(1)
+            driver.find_element(By.XPATH, '//a/div/label[contains(.,"My orders")]').click()
+            sleep(0.25)
+            print(f'No Orders')
+            sleep(5)
 
 
 def log_out():
