@@ -53,9 +53,9 @@ def navigate_homepage():
 def check_contact_us():
     if driver.current_url == locators.adShopCart_url:
         driver.find_element(By.LINK_TEXT, 'CONTACT US').click()
-        #Select(driver.find_element(By.XPATH, "//*[name='categoryListboxContactUs']")).select_by_visible_text('Laptops')
-        #sleep(1)
-        #Select(driver.find_element(By.XPATH, "//*[name='productListboxContactUs']")).select_by_visible_text('HP Chromebook 14 G1(ENERGY STAR)')
+        Select(driver.find_element(By.XPATH, "//select[@name='categoryListboxContactUs']")).select_by_visible_text('Laptops')
+        sleep(1)
+        Select(driver.find_element(By.NAME, 'productListboxContactUs')).select_by_visible_text('HP Chromebook 14 G1(ENERGY STAR)')
         sleep(0.25)
         driver.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
         driver.find_element(By.NAME, 'subjectTextareaContactUs').send_keys(locators.subject)
