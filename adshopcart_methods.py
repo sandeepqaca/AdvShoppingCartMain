@@ -4,9 +4,10 @@ import adshopcart_locators as locators
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Chrome(r'C:\Users\Sandeep Kaur\PycharmProjects\moodle2\chromedriver.exe')
+
 
 def setUp():
     print(f'Test started at: {datetime.datetime.now()}')
@@ -20,6 +21,46 @@ def setUp():
         print(f'We\'re not at the {driver.current_url} homepage. Check your code!')
         driver.close()
         driver.quit()
+
+
+def navigate_homepage():
+    if driver.current_url == locators.adShopCart_url:
+        assert driver.find_element(By.ID, 'speakersTxt').is_displayed()
+        sleep(0.25)
+        assert driver.find_element(By.ID, 'tabletsTxt').is_displayed()
+        sleep(0.25)
+        assert driver.find_element(By.ID, 'headphonesTxt').is_displayed()
+        sleep(0.25)
+        assert driver.find_element(By.ID, 'laptopsTxt').is_displayed()
+        sleep(0.25)
+        assert driver.find_element(By.ID, 'miceTxt').is_displayed()
+        sleep(2)
+        print(f'--Find great deals on SPEAKERS, TABLETS, HEADPHONES, LAPTOPS, MICE --')
+        driver.find_element(By.LINK_TEXT, 'OUR PRODUCTS').click()
+        print(f'-----OUR PRODUCTS Clicked-----')
+        sleep(0.25)
+        driver.find_element(By.LINK_TEXT, 'SPECIAL OFFER').click()
+        print(f'-----SPECIAL OFFER Clicked-----')
+        sleep(0.25)
+        driver.find_element(By.LINK_TEXT, 'POPULAR ITEMS').click()
+        print(f'-----POPULAR ITEMS Clicked-----')
+        sleep(0.25)
+        driver.find_element(By.LINK_TEXT, 'CONTACT US').click()
+        print(f'-----CONTACT US Clicked-----')
+        sleep(0.25)
+
+
+def check_contact_us():
+    if driver.current_url == locators.adShopCart_url:
+        driver.find_element(By.LINK_TEXT, 'CONTACT US').click()
+        Select(driver.find_element(By.NAME, 'categoryListboxContactUs')).select_by_visible_text('Laptops')
+        sleep(1)
+        Select(driver.find_element(By.XPATH, "//*[name='productListboxContactUs']")).select_by_visible_text('HP Chromebook 14 G1(ENERGY STAR)')
+        sleep(1)
+        driver.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
+        driver.find_element(By.NAME, 'subjectTextareaContactUs').send_keys(locators.subject)
+        driver.find_element(By.ID, 'send_btnundefined').click()
+        print(f'Thank you for contacting Advantage support. Is displayed')
 
 
 def register():
@@ -126,12 +167,15 @@ def tearDown():
         driver.close()
         driver.quit()
 
+'''
 setUp()
+navigate_homepage()
+check_contact_us()
 register()
 log_out()
 log_in()
 delete_user()
 login_with_deleted_cred()
 tearDown()
-
+'''
 

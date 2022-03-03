@@ -13,7 +13,8 @@ full_name = f'{first_name} {last_name}'
 phone_number = fake.phone_number()
 country = fake.country()
 city = fake.city()
-address = fake.city()
+address = fake.street_address()
 province = fake.province_abbr()
 postalcode = fake.postalcode
+subject = 'I have great experience using the AOS Cart'
 
